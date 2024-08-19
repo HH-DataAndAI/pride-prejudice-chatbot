@@ -15,7 +15,7 @@ hf_model = "mistralai/Mistral-7B-Instruct-v0.3"
 llm = HuggingFaceEndpoint(repo_id=hf_model)
 
 # document
-loader = PyPDFLoader("pandp12p.pdf")
+loader = PyPDFLoader("pride_and_prejudice.pdf")
 documents = loader.load()
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=800,
