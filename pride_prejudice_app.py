@@ -7,8 +7,9 @@ from langchain_core.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 import streamlit as st
+from token.py import HuggingFaceAPIToken
 
-os.environ["HuggingFaceAPIToken"] = userdata.get('HuggingFaceAPIToken')
+os.environ["HuggingFaceAPIToken"] = HuggingFaceAPIToken
 
 # llm
 hf_model = "mistralai/Mistral-7B-Instruct-v0.3"
