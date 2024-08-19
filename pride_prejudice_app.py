@@ -16,12 +16,12 @@ hf_model = "mistralai/Mistral-7B-Instruct-v0.3"
 llm = HuggingFaceEndpoint(repo_id=hf_model)
 
 # document
-loader = PyPDFLoader("pride_and_prejudice.pdf")
-documents = loader.load()
+# loader = PyPDFLoader("pride_and_prejudice.pdf")
+# documents = loader.load()
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=800,
+# text_splitter = RecursiveCharacterTextSplitter(chunk_size=800,
                                                chunk_overlap=150)
-docs = text_splitter.split_documents(documents)
+# docs = text_splitter.split_documents(documents)
 
 # embeddings
 embedding_model = "sentence-transformers/all-MiniLM-l6-v2"
