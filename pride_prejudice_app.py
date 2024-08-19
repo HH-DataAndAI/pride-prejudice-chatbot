@@ -37,7 +37,7 @@ embeddings = HuggingFaceEmbeddings(model_name=embedding_model,
 
 # load Vector Database
 # allow_dangerous_deserialization is needed. Pickle files can be modified to deliver a malicious payload that results in execution of arbitrary code on your machine
-vector_db = FAISS.load_local("/content/faiss_index", embeddings, allow_dangerous_deserialization=True)
+vector_db = FAISS.load_local("index.faiss", embeddings, allow_dangerous_deserialization=True)
 
 # retriever
 retriever = vector_db.as_retriever(search_kwargs={"k": 2})
