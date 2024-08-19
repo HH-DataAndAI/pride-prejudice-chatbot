@@ -1,30 +1,42 @@
-!pip install -qqq -U streamlit
-
 from langchain_huggingface import HuggingFaceEndpoint, HuggingFaceEmbeddings
+import os
+from langchain.document_loaders import PyPDFLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 import streamlit as st
 
+os.environ["HuggingFaceAPIToken"] = userdata.get('HuggingFaceAPIToken')
+
 # llm
 hf_model = "mistralai/Mistral-7B-Instruct-v0.3"
 llm = HuggingFaceEndpoint(repo_id=hf_model)
 
+# document
+loader = PyPDFLoader("pandp12p.pdf")
+documents = loader.load()
+
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=800,
+                                               chunk_overlap=150)
+docs = text_splitter.split_documents(documents)
+
 # embeddings
 embedding_model = "sentence-transformers/all-MiniLM-l6-v2"
-embeddings_folder = "/content/"
+embeddings_folder = "cache/"
+os.makedirs(embeddings_folder, exist_ok=True)
 
 embeddings = HuggingFaceEmbeddings(model_name=embedding_model,
                                    cache_folder=embeddings_folder)
 
 # creating vector database
 vector_db = FAISS.from_documents(docs, embeddings)
-vector_db.save_local("/content/faiss_index")
+# vector_db.save_local("/content/faiss_index")
 
 # load Vector Database
 # allow_dangerous_deserialization is needed. Pickle files can be modified to deliver a malicious payload that results in execution of arbitrary code on your machine
-vector_db = FAISS.load_local("/content/faiss_index", embeddings, allow_dangerous_deserialization=True)
+# vector_db = FAISS.load_local("/content/faiss_index", embeddings, allow_dangerous_deserialization=True)
 
 # retriever
 retriever = vector_db.as_retriever(search_kwargs={"k": 2})
