@@ -20,7 +20,7 @@ llm = HuggingFaceEndpoint(repo_id=hf_model)
 # documents = loader.load()
 
 # text_splitter = RecursiveCharacterTextSplitter(chunk_size=800,
-                                               chunk_overlap=150)
+#                                                chunk_overlap=150)
 # docs = text_splitter.split_documents(documents)
 
 # embeddings
