@@ -9,7 +9,7 @@ from langchain.chains import ConversationalRetrievalChain
 import streamlit as st
 from hf_token.py import HuggingFaceAPIToken
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = HuggingFaceAPIToken
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
 
 # llm
 hf_model = "mistralai/Mistral-7B-Instruct-v0.3"
