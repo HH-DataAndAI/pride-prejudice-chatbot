@@ -1,1 +1,1 @@
-HuggingFaceAPIToken = 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
+HuggingFaceAPIToken = "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"
