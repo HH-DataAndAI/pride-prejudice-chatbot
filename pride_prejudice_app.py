@@ -7,7 +7,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 import streamlit as st
-from hf_token.py import HuggingFaceAPIToken
+# from hf_token.py import HuggingFaceAPIToken
 
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
 
